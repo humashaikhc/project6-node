@@ -1,83 +1,88 @@
-import { readFileSync, writeFileSync } from "fs";
+//import { readFileSync, writeFileSync } from "fs";
+import { Chocolates } from "../models/chocolate.js";
+import {Op} from "sequelize";
 
-let chocolate = JSON.parse(readFileSync("./data/data.json"));
+//let chocolate = JSON.parse(readFileSync("./data/data.json"));
 
-export const getData = (req, res) => {
+export const getData = async (req, res) => {
   const { name, location } = req.query;
-  let results = chocolate;
+
+  const query = { where: {} };
+
   if (name) {
-    const lowerName = name.toLowerCase();
-    results = results.filter(student => {
-      return student.name.toLowerCase().includes(lowerName);
-    });
+    query.where.name = {
+      [Op.like]: `%${name}%`,
+    };
   }
 
   if (location) {
-    const lowerLocation = location.toLowerCase();
-    results = results.filter(chocolate => {
-      return chocolate.location.toLowerCase() === lowerLocation;
+    query.where.location = {
+      [Op.eq]: location,
+    };
+  }
+
+  try {
+    const chocolate = await Chocolates.findAll(query);
+    res.send(chocolate);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+};
+
+export const addData = async (req, res) => {
+  try {
+    const chocolates = await Chocolates.create(req.body);
+    res.status(201).send({ data: `Data ID: ${chocolates.id} created` });
+  } catch (error) {
+    res.status(403).send(error.message);
+  }
+};
+
+export const getId = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const chocolates = await Chocolates.findByPk(id);
+
+    if (!chocolates) {
+      throw new Error("Data not found");
+    }
+
+    res.send(chocolates);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+};
+
+export const deleteData = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const chocolates = await Chocolates.destroy({ where: { id } });
+
+    if (chocolates[0] === 0) {
+      throw new Error("Data not found");
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+};
+
+export const updateChocolateById = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const chocolates = await Chocolates.update(req.body, {
+      where: {
+        id,
+      },
     });
-  }
 
-  res.send({
-    data: results,
-  });
-};
+    if (chocolates[0] === 0) {
+      throw new Error("Data not found");
+    }
 
-export const addData = (req, res) => {
-  const chocolateExists = chocolate.find(
-    chocolates => chocolates.name === req.body.name && chocolates.location === req.body.location
-  );
-
-  if (chocolateExists) {
-    return res.status(403).send("Chocolate already exists");
-  }
-
-  chocolate.push(req.body);
-  writeFileSync("./data/data.json", JSON.stringify(chocolate, null, 2));
-  res.status(201).send({
-    message: `Chocolate added, ${JSON.stringify(req.body)}`,
-  });
-};
-
-export const getId = (req, res) => {
-  const id = parseInt(req.params.id);
-  const chocolates = chocolate.find(chocolates => chocolates.id === id);
-
-  if (chocolates) {
-    res.send({ data: chocolates });
-  } else {
-    res.status(404).send("Chocolate not found!");
-  }
-};
-
-export const deleteData = (req, res) => {
-  const id = parseInt(req.params.id);
-  const hasId = chocolate.some(chocolates => chocolates.id === id);
-
-  if (hasId) {
-    const filteredChocolate = chocolate.filter(chocolates => chocolates.id !== id);
-    chocolate = filteredChocolate;
-    writeFileSync("./data/data.json", JSON.stringify(filteredChocolate, null, 2));
-    res.send({ data: filteredChocolate });
-  } else {
-    res.status(404).send("Chocolate not found!");
-  }
-};
-
-export const updateChocolateById = (req, res) => {
-  const id = parseInt(req.params.id);
-  const chocolates = chocolate.find(chocolates => chocolates.id === id);
-
-  if (chocolates) {
-    chocolates.name = req.body.name;
-    chocolates.location = req.body.location;
-    chocolates.speciality = req.body.speciality;
-
-    writeFileSync("./data/data.json", JSON.stringify(chocolate, null, 2));
-
-    res.send({ data: chocolates });
-  } else {
-    res.status(404).send("Chocolate not found!");
+    res.status(204).send();
+  } catch (error) {
+    res.status(404).send(error.message);
   }
 };
