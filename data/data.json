@@ -1,124 +1,122 @@
 [
-  { "id": 1, 
-  "first_name": "Mervin", 
-  "last_name": "Brwon", 
-  "house": "compton" },
+  {
+    "id": 1,
+    "name": "Delicje",
+    "location": "Poland",
+    "speciality": "Orange Flavoured"
+  },
   {
     "id": 2,
-    "first_name": "Byron",
-    "last_name": "Ferrando",
-    "house": "newton"
+    "name": "Pierniki Torunskie",
+    "location": "Poland",
+    "speciality": "Ginger bread cookies"
   },
   {
     "id": 3,
-    "first_name": "Gerry",
-    "last_name": "Losey",
-    "house": "landsdown"
+    "name": "Karl Frazer",
+    "location": "Finland",
+    "speciality": "Wrapper"
   },
   {
     "id": 4,
-    "first_name": "Nicole",
-    "last_name": "Goswami",
-    "house": "burnett"
+    "name": "Salmiak",
+    "location": "Finland",
+    "speciality": "Salty Licorice"
   },
   {
     "id": 5,
-    "first_name": "Leigha",
-    "last_name": "Saldano",
-    "house": "compton"
+    "name": "Leonidas",
+    "location": "Belgium",
+    "speciality": "100% cocoa butter"
   },
   {
     "id": 6,
-    "first_name": "Bethany",
-    "last_name": "Dafonseca",
-    "house": "newton"
+    "name": "Godiva",
+    "location": "Belgium",
+    "speciality": "Beautiful boxes"
   },
   {
     "id": 7,
-    "first_name": "Karma",
-    "last_name": "Clearwater",
-    "house": "landsdown"
+    "name": "Confeitaria Arcadia",
+    "location": "Portugal",
+    "speciality": "Handmade chocolates"
   },
-  { "id": 8, "first_name": "Ahmad", "last_name": "Walz", "house": "burnett" },
+  {
+    "id": 8,
+    "name": "Cacao Barry",
+    "location": "France",
+    "speciality": "Since 1842"
+  },
   {
     "id": 9,
-    "first_name": "Jerry",
-    "last_name": "Galdames",
-    "house": "compton"
+    "name": "Valrhona",
+    "location": "France",
+    "speciality": "Own plantations of cocoa"
   },
-  { "id": 10, "first_name": "Randi", "last_name": "Welzel", "house": "newton" },
-  { "id": 11, "first_name": "Huey", "last_name": "Burd", "house": "landsdown" },
+  {
+    "id": 10,
+    "name": "Poiana",
+    "location": "Romania",
+    "speciality": "Rich and creamy"
+  },
+  {
+    "id": 11,
+    "name": "Kandia",
+    "location": "Romania",
+    "speciality": "55% chocolate"
+  },
   {
     "id": 12,
-    "first_name": "Shaunda",
-    "last_name": "Scharpf",
-    "house": "burnett"
+    "name": "Valor",
+    "location": "Spain",
+    "speciality": "Chocolate museum"
   },
   {
     "id": 13,
-    "first_name": "Diedra",
-    "last_name": "Fermo",
-    "house": "compton"
+    "name": "Pamplona",
+    "location": "Spain",
+    "speciality": "Homemade chocolate"
   },
   {
     "id": 14,
-    "first_name": "Joan",
-    "last_name": "Sebastiano",
-    "house": "newton"
+    "name": "Marabou",
+    "location": "Sweden",
+    "speciality": "Particular flavour"
   },
   {
     "id": 15,
-    "first_name": "Kendal",
-    "last_name": "Cordovano",
-    "house": "landsdown"
+    "name": "Cloetta",
+    "location": "Sweden",
+    "speciality": "Chocolate candy bars"
   },
   {
     "id": 16,
-    "first_name": "Zackary",
-    "last_name": "Brun",
-    "house": "burnett"
+    "name": "Schogetten",
+    "location": "Germany",
+    "speciality": "Famous for the amount"
   },
   {
     "id": 17,
-    "first_name": "Marcelino",
-    "last_name": "Sluder",
-    "house": "compton"
+    "name": "Merci",
+    "location": "Germany",
+    "speciality": "Means Thank you in french"
   },
   {
     "id": 18,
-    "first_name": "Nicholle",
-    "last_name": "Zeme",
-    "house": "newton"
+    "name": "Suchard",
+    "location": "Bulgaria",
+    "speciality": "Unique shapes"
   },
   {
     "id": 19,
-    "first_name": "Shelby",
-    "last_name": "Nathan",
-    "house": "landsdown"
+    "name": "Aero",
+    "location": "Bulgaria",
+    "speciality": "Inexpensive"
   },
   {
     "id": 20,
-    "first_name": "Rina",
-    "last_name": "Woznick",
-    "house": "burnett"
-  },
-  {
-    "id": 21,
-    "first_name": "Sybil",
-    "last_name": "Marzinske",
-    "house": "compton"
-  },
-  { "id": 22, "first_name": "Sean", "last_name": "Vanegas", "house": "newton" },
-  {
-    "id": 23,
-    "first_name": "Ivette",
-    "last_name": "Johar",
-    "house": "landsdown"
-  },
-  {
-    "id": 24,
-    "first_name": "Leslie",
-    "last_name": "Malbrough",
-    "house": "burnett"
+    "name": "Yummm",
+    "location": "Huma",
+    "speciality": "hooooyaaaa"
   }
 ]
