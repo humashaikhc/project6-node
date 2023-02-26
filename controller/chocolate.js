@@ -1,25 +1,37 @@
 //import { readFileSync, writeFileSync } from "fs";
 import { Chocolates } from "../models/chocolate.js";
-import {Op} from "sequelize";
+import { Op } from "sequelize";
 
 //let chocolate = JSON.parse(readFileSync("./data/data.json"));
 
 export const getChocolate = async (req, res) => {
-  const { name, location } = req.query;
+  const { id, name, location, priority } = req.query;
 
-  const query = { where: {} };
+  const query = {
+    attributes: ["id", "name", "location", "speciality"],
+    where: {},
+    order: [],
+  };
 
+  if (id) {
+    query.where.id = { [Op.like]: `%${id}%` };
+  }
   if (name) {
-    query.where.name = {
-      [Op.like]: `%${name}%`,
-    };
+    query.where.name = { [Op.like]: `%${name}%` };
   }
 
   if (location) {
-    query.where.location = {
-      [Op.eq]: location,
-    };
+    query.where.location = { [Op.like]: `%${location}%` };
   }
+
+  if (priority == "asc") {
+    query.order[0] = ["name", "ASC"];
+  } else if (priority == "desc") {
+    query.order[0] = ["name", "DESC"];
+  } else if (name) {
+    query.where.name = { [Op.eq]: name};
+  }
+  
 
   try {
     const chocolate = await Chocolates.findAll(query);
@@ -56,9 +68,9 @@ export const getChocolateById = async (req, res) => {
 export const deleteChocolate = async (req, res) => {
   const id = parseInt(req.params.id);
   try {
-    const chocolates = await Chocolates.destroy({ where: { id } });
+    const chocolates = await Chocolates.destroy({ where: { id: id } });
 
-    if (chocolates[0] === 0) {
+    if (!chocolates) {
       throw new Error("Data not found");
     }
 
@@ -81,6 +93,7 @@ export const updateChocolateById = async (req, res) => {
       throw new Error("Data not found");
     }
 
+    res.send("This task has been updated");
     res.status(204).send();
   } catch (error) {
     res.status(404).send(error.message);

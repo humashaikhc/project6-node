@@ -1,9 +1,5 @@
 import Router from "express";
 import {
-  getData,
-  addData,
-  getId,
-  deleteData,
   updateChocolateById,
   getChocolate,
   getChocolateById,
