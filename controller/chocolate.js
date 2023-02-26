@@ -4,7 +4,7 @@ import {Op} from "sequelize";
 
 //let chocolate = JSON.parse(readFileSync("./data/data.json"));
 
-export const getData = async (req, res) => {
+export const getChocolate = async (req, res) => {
   const { name, location } = req.query;
 
   const query = { where: {} };
@@ -29,7 +29,7 @@ export const getData = async (req, res) => {
   }
 };
 
-export const addData = async (req, res) => {
+export const addChocolate = async (req, res) => {
   try {
     const chocolates = await Chocolates.create(req.body);
     res.status(201).send({ data: `Data ID: ${chocolates.id} created` });
@@ -38,7 +38,7 @@ export const addData = async (req, res) => {
   }
 };
 
-export const getId = async (req, res) => {
+export const getChocolateById = async (req, res) => {
   const id = parseInt(req.params.id);
   try {
     const chocolates = await Chocolates.findByPk(id);
@@ -53,7 +53,7 @@ export const getId = async (req, res) => {
   }
 };
 
-export const deleteData = async (req, res) => {
+export const deleteChocolate = async (req, res) => {
   const id = parseInt(req.params.id);
   try {
     const chocolates = await Chocolates.destroy({ where: { id } });

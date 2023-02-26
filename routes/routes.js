@@ -1,15 +1,25 @@
 import Router from "express";
-import { getData,addData,getId,deleteData,updateChocolateById } from "../controller/chocolate.js";
+import {
+  getData,
+  addData,
+  getId,
+  deleteData,
+  updateChocolateById,
+  getChocolate,
+  getChocolateById,
+  deleteChocolate,
+  addChocolate,
+} from "../controller/chocolate.js";
 
 const router = Router();
 
-router.get("/", getData);
+router.get("/", getChocolate);
 
-router.get("/:id", getId);
+router.get("/:id", getChocolateById);
 
-router.delete("/:id", deleteData);
+router.delete("/:id", deleteChocolate);
 
-router.post("/", addData);
+router.post("/", addChocolate);
 
 router.put("/:id", updateChocolateById);
 
