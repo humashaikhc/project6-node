@@ -31,7 +31,7 @@ export const getChocolate = async (req, res) => {
   } else if (name) {
     query.where.name = { [Op.eq]: name};
   }
-  
+
 
   try {
     const chocolate = await Chocolates.findAll(query);
@@ -74,7 +74,7 @@ export const deleteChocolate = async (req, res) => {
       throw new Error("Data not found");
     }
 
-    res.status(204).send();
+    res.status(201).send({ data: `Successfully deleted` });
   } catch (error) {
     res.status(404).send(error.message);
   }
